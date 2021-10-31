@@ -18,7 +18,7 @@ import java.util.List;
  * @since 09 October 2021
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("api/v1/students")
 public class StudentController {
 
     private static final List<Student> STUDENTS = Arrays.asList(
