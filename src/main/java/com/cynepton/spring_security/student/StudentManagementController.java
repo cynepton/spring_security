@@ -1,5 +1,6 @@
 package com.cynepton.spring_security.student;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -26,24 +27,29 @@ public class StudentManagementController {
     );
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
     public List<Student> getAllStudents() {
+        System.out.println("getAllStudents");
         return STUDENTS;
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('student:write')")
     public void addStudent(@RequestBody Student student) {
         System.out.println("Add New Student");
         System.out.println(student);
     }
 
     @DeleteMapping(path = "{studentId}")
+    @PreAuthorize("hasAuthority('student:write')")
     public void deleteStudent(@PathVariable("studentId") Integer studentId) {
         System.out.println("Delete Student");
         System.out.println(studentId);
     }
 
     @PutMapping(path = "{studentId}")
-    public void updateStudent(@PathVariable("studentId") Integer studentId,
+    @PreAuthorize("hasAuthority('student:write')")
+    public void putStudent(@PathVariable("studentId") Integer studentId,
                               @RequestBody Student student) {
         System.out.println("Update Student");
         System.out.println(studentId + " " + student);
