@@ -25,4 +25,13 @@ public class Student {
     public Student(Integer studentId) {
         this.studentId = studentId;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }
